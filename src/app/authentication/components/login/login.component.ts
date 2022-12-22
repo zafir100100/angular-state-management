@@ -28,8 +28,7 @@ export class LoginComponent {
       if (data.username == 'admin' && data.password == 'admin') {
         localStorage.setItem('token', 'admin-token');
         Swal.fire('Success', 'Login success', 'success');
-        this.delay(1000);
-        this.router.navigateByUrl('/employee/manage-employee');
+        this.router.navigateByUrl('/employee/employee-list');
       } else {
         Swal.fire('Error', 'Invalid username or password', 'error');
       }

@@ -5,11 +5,15 @@ import { EmployeeManagementComponent } from './components/employee-management/em
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'manage-employee',
+    redirectTo: 'employee-list',
     pathMatch: 'full'
   },
   {
-    path: 'manage-employee',
+    path: 'employee-registration',
+    component: EmployeeManagementComponent
+  },
+  {
+    path: 'employee-list',
     component: EmployeeManagementComponent
   }
 ];
