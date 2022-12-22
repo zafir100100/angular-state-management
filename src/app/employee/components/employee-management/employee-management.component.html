@@ -1,17 +1,22 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="submit()">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-      placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <input type="text" class="form-control" placeholder="First Name" maxlength="20" formControlName="firstName">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="text" class="form-control" placeholder="Last Name" maxlength="20" formControlName="lastName">
   </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  <div class="form-group">
+    <input type="date" class="form-control" placeholder="Dob" formControlName="dob">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Phone" maxlength="11" formControlName="phone">
+  </div>
+  <div class="form-group">
+    <select class="form-select" formControlName="gender">
+      <option value="null">(Select Gender)</option>
+      <option value="null">Male</option>
+      <option value="null">Female</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
 </form>

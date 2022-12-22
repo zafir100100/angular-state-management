@@ -8,16 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-management.component.css']
 })
 export class EmployeeManagementComponent {
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder) {
 
   }
 
   public form: FormGroup = this.fb.group({
-    username: ['admin', [Validators.required, Validators.maxLength(10)]],
-    password: ['admin', [Validators.required, Validators.maxLength(10)]],
+    firstName: [null, [Validators.required, Validators.maxLength(20)]],
+    lastName: [null, [Validators.required, Validators.maxLength(20)]],
+    dob: [null, [Validators.required, Validators.maxLength(10)]],
+    phone: [null, [Validators.required, Validators.maxLength(11)]],
+    gender: [null, [Validators.required, Validators.maxLength(6)]],
   });
 
   ngOnInit(): void {
-    // this.logOut();
+  }
+
+  public submit(): void {
+    console.log(this.form.value);
   }
 }
