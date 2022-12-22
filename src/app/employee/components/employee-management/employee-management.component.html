@@ -1,22 +1,75 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="First Name" maxlength="20" formControlName="firstName">
+<div class="row">
+  <div class="col-4" [ngStyle]="{'background-color': step == 1 ? 'skyblue' : 'white'}">Step 1</div>
+  <div class="col-4" [ngStyle]="{'background-color': step == 2 ? 'skyblue' : 'white'}">Step 2</div>
+  <div class="col-4" [ngStyle]="{'background-color': step == 3 ? 'skyblue' : 'white'}">Step 3</div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="step1" (ngSubmit)="step1Next()" [ngStyle]="{'display': step == 1 ? 'block' : 'none'}">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="First Name" maxlength="20" formControlName="firstName">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Last Name" maxlength="20" formControlName="lastName">
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" placeholder="Dob" formControlName="dob">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Phone" maxlength="11" formControlName="phone">
+      </div>
+      <div class="form-group">
+        <select class="form-select" formControlName="gender">
+          <option value="null">(Select Gender)</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="step1.invalid">Submit</button>
+    </form>
+    <form [formGroup]="step2" (ngSubmit)="step2Next()" [ngStyle]="{'display': step == 2 ? 'block' : 'none'}">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Skill Name" maxlength="50" formControlName="skillName">
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" placeholder="Experience (in years)" formControlName="experience">
+      </div>
+      <div class="form-group">
+        <select class="form-select" formControlName="skillLevel">
+          <option value="null">(Select Skill Level)</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="step2.invalid">Submit</button>
+    </form>
+    <card [ngStyle]="{'display': step == 3 ? 'block' : 'none'}">
+      <div class="form-group">
+        <label>First Name: {{step3?.firstName}}</label>
+      </div>
+      <div class="form-group">
+        <label>Last Name: {{step3?.lastName}}</label>
+      </div>
+      <div class="form-group">
+        <label>DOB: {{step3?.dob}}</label>
+      </div>
+      <div class="form-group">
+        <label>Phone: {{step3?.phone}}</label>
+      </div>
+      <div class="form-group">
+        <label>Gender: {{step3?.gender}}</label>
+      </div>
+      <div class="form-group">
+        <label>Skill Name: {{step3?.skillName}}</label>
+      </div>
+      <div class="form-group">
+        <label>Experience: {{step3?.experience}}</label>
+      </div>
+      <div class="form-group">
+        <label>SKill level: {{step3?.skillLevel}}</label>
+      </div>
+      <button type="button" (click)="step3Next()"></button>
+    </card>
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Last Name" maxlength="20" formControlName="lastName">
-  </div>
-  <div class="form-group">
-    <input type="date" class="form-control" placeholder="Dob" formControlName="dob">
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Phone" maxlength="11" formControlName="phone">
-  </div>
-  <div class="form-group">
-    <select class="form-select" formControlName="gender">
-      <option value="null">(Select Gender)</option>
-      <option value="null">Male</option>
-      <option value="null">Female</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
-</form>
+</div>
