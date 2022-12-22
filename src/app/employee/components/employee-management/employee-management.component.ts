@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-management',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class EmployeeManagementComponent {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private router: Router) {
 
   }
 
@@ -30,6 +31,7 @@ export class EmployeeManagementComponent {
   public step3: any = null;
 
   ngOnInit(): void {
+    this.employeeService.seedEmployees();
   }
 
   public step1Next(): void {
@@ -41,11 +43,15 @@ export class EmployeeManagementComponent {
       ...this.step1.value,
       ...this.step2.value,
     };
-    console.log(this.step3);
     this.step = 3;
   }
 
   public step3Next(): void {
-    console.log(this.step3);
+    this.employeeService.createEmployee(this.step3);
   }
+
+  public gotoList(): void {
+    this.router.navigateByUrl('/employee/employee-list');
+  }
+
 }
